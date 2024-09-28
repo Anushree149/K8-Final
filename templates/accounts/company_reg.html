@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %} Register {% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title >Company Registration</title>
+</head>
+<body>
+    <center><h2 class="m-2" style="font-size:2rem;">Company Registration</h2></company>
+   
+
+    <section class="section-content ">
+
+        <!-- ============================ COMPONENT REGISTER   ================================= -->
+            <div class="card mx-auto" style="max-width:520px; margin-top:40px;font-size:1rem;">
+              <article class="card-body">
+                <header class="mb-4"><h4 class="card-title">Sign up</h4></header>
+                {% include 'accounts/alerts.html' %}
+                <form method="POST"  >
+                {% csrf_token %}
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>First name</label>
+                                  <input type="text" name="fname" class="form-control" required>
+                            </div> <!-- form-group end.// -->
+                            <div class="col form-group">
+                                <label>Last name</label>
+                                  <input type="text" name="lname" class="form-control" required>
+                            </div> <!-- form-group end.// -->
+                        </div> <!-- form-row end.// -->
+                       
+                        <div class="form-row">
+                            <div class="col form-group">
+                                <label>Company Name </label>
+                                <input type="text" name="company_name" class="form-control" required>
+                            </div>
+
+                            <div class="col form-group">
+                                <label>Designation </label>
+                                <input type="text" name="designation" class="form-control" required >
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label>Email</label>
+                              <input type="email" name="email" class="form-control" required >
+                            </div> <!-- form-group end.// -->
+
+                            <div class="col form-group">
+                                <label>Phone Number </label>
+                                <input type="text" name="phone_number" class="form-control" required>
+                            </div>
+                        </div> <!-- form-row.// -->
+
+                        {% comment %} <div class="form-row">
+                             <div class="form-group col-md-6">
+                                <label>Password</label>
+                                <input type="password" name="password" class="form-control "required >
+                            </div> <!-- form-group end.// -->
+
+                            <div class="form-group col-md-6">
+                                <label>Confirm Password</label>
+                                <input type="password" name="c_password" class="form-control " required>
+                            </div>
+                        </div>  {% endcomment %}
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block"> Register  </button><br>
+                            {% comment %} <button  class="btn btn-secondary btn-block">
+                                <a href="{% url 'main' %}" style="color:#ffffff">Back</a>
+                            </button> {% endcomment %}
+                            <a href="{% url 'main' %}" style="color:#ffffff;
+                            background: gray;
+                            padding: 0.5rem;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            border-radius: 5px;">Back</a>
+                        </div> <!-- form-group// -->       
+                            
+                </form>
+                </article><!-- card-body.// -->
+            </div> <!-- card .// -->
+            <br><br>
+        <!-- ============================ COMPONENT REGISTER  END.// ================================= -->
+    </section>
+</body>
+</html>
+
+{% endblock %}

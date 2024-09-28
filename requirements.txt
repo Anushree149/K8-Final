@@ -1,0 +1,6 @@
+Django==4.1.6
+django_filter==23.2
+django_phone_field==1.8.1
+django-widget-tweaks
+crispy-bootstrap5
+django-widget-tweaks

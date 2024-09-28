@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% load static %}
+
+{% block title %} Home {% endblock %}
+{% block content %}
+
+<html>
+<head>
+   
+
+</head>
+
+<body>
+
+    <center><h1 style='padding-top:1.3rem; font-family: 'DM Sans', sans-serif '> Actify To-Do List </h1></center>
+    <center style="font-size:1.5rem;font-family:'DM Sans', sans-serif;font-style:italic;"><i>"Tasks Made Easy: Your Go-To Productivity Partner!"</i></center>
+    <ul class="navbar-nav " style="padding: 0px 5rem; flex-direction:row; justify-content:space-between; gap:2rem; margin: 1.5rem 0">
+        {% if request.user.is_authenticated%}
+          {% if request.user.is_admin %}
+
+            <div style ="display:flex;align-items:center;">
+            <a class="nav-link" href="{% url 'add_todo' %}" style="
+            border-radius: 5px;
+            color: #ffffff;
+            border: 1px solid #0f2379;
+            padding:0.7rem 0.5rem;
+            font-size:1rem;
+            background-image: linear-gradient(to right, #2b5876 0%, #4e4376 51%, #2b5876 100%);
+            ">Create Task</a>
+
+          <a href="{% url 'add_emp' %}"style="padding=0.5rem;margin:0 1rem; background-image: linear-gradient(to right, #085065 0%, #00c6ff 100%);
+          border-radius: 5px;
+          color:#ffffff;
+          border: none;
+          padding:0.7rem 0.5rem;
+          font-size:1rem;
+          outline: none;" >
+           Add Employee
+          </a>
+
+        </div>
+
+        <div style ="display:flex;align-items:center;">
+            {% comment %} <a class="nav-link" href="{% url 'feedback' %}"><img src="{% static "images/feedback.svg" %}"></a> {% endcomment %}
+
+            <a href="{% url "emp_list" %}">
+                <button class="btn btn-danger" style="padding=0.5rem;margin:0 1rem" >Delete Employee</button>
+            </a>
+
+            <a class="nav-link" href="{% url 'feedback' %}"><img src="{% static "images/feedback.svg" %}"></a>
+          </div>
+          {% else %}
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'feedback' %}" style="background: #0f2379;
+            border-radius: 5px;
+            color: #ffffff;
+            border: 1px solid #0f2379;
+            font-size:1.2rem;
+            padding:10px 7px;
+            ">Feedback</a>
+          </li> 
+          {% comment %} <a class="nav-link" href="{% url 'feedback' %}"><img src="{% static "images/feedback.svg" %}"></a> {% endcomment %}
+          {% endif%} 
+        {% else %}
+        {% endif %}
+
+
+    </ul>
+<div class='container' style="font-size:1rem;">
+    <div class='row'>
+        <div class='col-md-12'>
+            <div class='card'>
+                <div class='card-body'>
+                     <table class='table table-striped table-hover'>
+                        <thead>
+
+                            {% include 'accounts/alerts.html' %}
+                            {% if request.user.is_admin %}
+                            <form method='GET'>
+                                <div class="row  d-flex align-items-center justify-content-evenly">
+                                    <div class="form-group col-sm-4 col-md-3">
+                                      {{ my_filter.form.assign_to.label_tag }}
+                                      {{ my_filter.form.assign_to }}
+                                    </div>
+                                    <div class="form-group col-sm-4 col-md-3">
+                                      {{ my_filter.form.exact_date.label_tag }}
+                                      {{ my_filter.form.exact_date }}
+                                    </div>
+                                    <div class="form-group col-sm-4 col-md-3">
+                                        {{ my_filter.form.Task_priority.label_tag }}
+                                        {{ my_filter.form.Task_priority  }}
+                                    </div>
+                                    <div class="form-group col-sm-4 col-md-3">
+                                      {{ my_filter.form.Search_employee.label_tag }}
+                                      {{ my_filter.form.Search_employee  }}
+                                    </div>
+                                    
+                                </div>
+                                <button class="d-flex justify-content-center align-items-center btn btn-outline-success mb-4 mx-auto px-4" type="submit">Search</button>
+                            </form> 
+                            {% else%}
+                            {% endif%} 
+                            <tr>
+                                <th>SR.NO</th>
+                                <th> Task ID</th>
+                                {% if request.user.is_admin %}
+                                <th>Names </th>
+                                {% else %}
+                                {% endif %}
+                                <th>Task </th>
+                                <th>Priority </th>
+                                <th>Status</th>
+                                <th>Deadline</th>
+                                
+                            </tr>
+                        </thead>
+                        
+                        <tbody>
+                            {% if todos %}
+                            {% for todo in todos %}
+                            <tr>
+                                <td><a style="color: #000000; font-family: 'Poppins', sans-serif;" href="{% url 'details' todo.id %}">{{forloop.counter}}</a></td>
+                                <td><a style="color: #000000; font-family: 'Poppins', sans-serif; font-weight:700" href="{% url 'details' todo.id %}">{{todo.id}}</a></td>
+
+                                {% if request.user.is_admin %}
+                                <td><a style="color: #000000; font-family: 'Poppins', sans-serif; font-weight:700" href="{% url 'details' todo.id %}">{{todo.assign_to}}</a></td>
+                                {% else %}
+                                {% endif %}
+
+                                {% if request.user.is_employee %}
+                                <td style="color: #000000; font-family: 'Poppins', sans-serif;font-weight:700"><a href="{% url  'details' todo.id %}" style="color: #000000">{{todo.title}}</a></td>
+                                {% else %}
+                                <td style="color: #000000; font-family: 'Poppins', sans-serif">{{todo.title}}</td>
+                                {% endif %}
+                                
+                                <td style="color: #000000; font-family: 'Poppins', sans-serif">{{todo.priority}}</td>
+                                <td style="color: #000000; font-family: 'Poppins', sans-serif">{{todo.status}}</td>
+                                <td style="color: #000000; font-family: 'Poppins', sans-serif">{{todo.deadline}}</td>
+                                {% if request.user.is_admin %}
+                                <td><a href="{% url 'delete' todo.id %}">
+                                    <img src="{% static 'images/delete.png'%}">
+                                </a></td>
+                                {% else %}
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                            {% else %}
+                            <h3>
+                                <div class="alert alert-dark" role="alert">
+                                    Record Not Found
+                                  </div>
+                            </h3>
+                            {% endif %}
+                        </tbody>
+                    </table> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>  
+
+</body>
+</html>
+
+{% endblock %}

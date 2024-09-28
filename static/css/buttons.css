@@ -1,0 +1,47 @@
+.allBtn {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 2rem 0;
+}
+
+
+/* .admbtn:hover {
+  background: #ffffff;
+  color: #342c8d;
+  border: 1px solid #0f2379;
+  box-shadow: rgb(255 255 255 / 30%) 1.95px 1.95px 2.6px;
+} */
+
+.actifyImg {
+  width: 148px;
+}
+
+
+.bold{
+  font-size: 13px;
+}
+
+.wel{
+  margin-bottom: 0.5rem;
+}
+
+.logBtn{
+  padding: 0.5rem;
+  background: #ff0000ab;
+  border-radius: 10px;
+}
+
+.background{
+  background-image: url("https://images.unsplash.com/photo-1454372182658-c712e4c5a1db?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80") !important;
+  height: 90vh;
+
+}
+
+.linkcolor{
+  a:hover, a:active {
+    background-color: red !important;
+  }
+}
+
+

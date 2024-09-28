@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+
+{% block title %} Login {% endblock %}
+{% block content %}
+
+<section class="section-conten padding-y" style="min-height:84vh;font-size:1rem;">
+
+    <!-- ============================ COMPONENT LOGIN   ================================= -->
+        <div class="card mx-auto" style="max-width: 380px; margin-top:100px;">
+          <div class="card-body">
+          <h4 class="card-title mb-4">Sign in</h4>
+          {% include 'accounts/alerts.html' %}
+          <form method="POST" action="{% url 'all_login' %}">
+             {% csrf_token %}
+              <div class="form-group">
+                 <input type="email"  name="email" class="form-control" placeholder="Enter Email" required >
+              </div> <!-- form-group// -->
+              <div class="form-group">
+                <input type="password" name="password" class="form-control" placeholder="Enter Password" required >
+              </div> <!-- form-group// -->
+              
+              <div class="form-group">
+                  <a href="{% url "forgotpassword" %}" class="float-right">Forgot password?</a> 
+               
+              </div> <!-- form-group form-check .// --> 
+              <div class="form-group">
+                  <button type="submit" class="btn btn-primary btn-block"> Login  </button>
+                  <br>
+
+
+                <a href="{% url 'main' %}"  style=" color: #ffffff;
+                background: gray;
+                padding: 0.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 5px;">
+                  Back
+                </a> 
+              </div> <!-- form-group// -->    
+          </form>
+          </div> <!-- card-body.// -->
+        </div> <!-- card .// -->
+    
+         <p class="text-center mt-4">Don't have account? <a href="{% url 'company_register' %}">Register Company</a></p>
+         <br><br>
+    <!-- ============================ COMPONENT LOGIN  END.// ================================= -->
+    
+    
+    </section>
+
+{% endblock %}
+

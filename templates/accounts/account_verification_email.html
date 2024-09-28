@@ -1,0 +1,19 @@
+{% autoescape off %}
+Hi! {{user.first_name}}
+Your company {{user.company_name}} have been successfully registered. 
+You login Email and Password is :-
+Email = {{user.email}}
+Password = 123456
+
+Please click on the below link to activate your account
+http://{{domain}}{% url 'activate' uid=uid token=token %}
+
+Make sure to change the password once logged in.
+
+Thanks & Regards
+Team Actify 
+info@actifyzone.com
+www.actifyzone.com
++91 9867476400
+
+{% endautoescape %}

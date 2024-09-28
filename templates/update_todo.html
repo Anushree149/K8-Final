@@ -1,0 +1,26 @@
+    {% extends 'base.html' %}
+    {% load crispy_forms_tags %}
+
+
+    {% block title %} Update To-do {% endblock %}
+    {% block content %}
+
+
+
+    <div class='col-md-6 offset-md-3' style="font-size:1rem;">
+        {% include 'accounts/alerts.html' %}
+        <form method="POST" >
+            {% csrf_token %} 
+            {{form|crispy}} 
+            <div class="form-group">
+                {% comment %} <button href="" class="btn btn-outline-info" type="submit">
+                    Create
+                </button> {% endcomment %}
+                <button type="submit" class="btn btn-secondary">Update Record</button>
+
+                <a href = "{% url 'home' %}" class='btn btn-secondary'>Back</a>
+            </div> 
+        </form>
+    </div>
+
+    {% endblock %}

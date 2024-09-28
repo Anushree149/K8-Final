@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+<center><h1 style='padding-top:1.3rem;font-family:'DM Sans', sans-serif'>List of Employees </h1></center>
+<center><spam style="font-size:1rem;"> Note* Deleting an employee will delete all the tasks assign to them.</spam></center>
+
+<div class='container' style="font-size:1rem">
+  <div class='row'>
+      <div class='col-md-12'>
+          <div class='card m-2'>
+              <div class='card-body'>  
+                <table id="keywords" cellspacing="0" cellpadding="0" style="font-size:1rem; width: 100%;
+                text-align: center;">
+                  <thead>
+                    <form method='GET' >
+                      <div class="form-group col-sm-4 col-md-3" style="margin-left:2rem; padding:0">
+                        {% comment %} {{my_filter.form.Search_Name.label_tag}} {% endcomment %}
+                        {{my_filter.form.Search_Name}}
+                      </div>
+                      <button class="btn btn-outline-success" style="margin:0rem 0 1rem 2rem;" type="submit">Search</button>
+                      
+                    </form>
+                    <tr>
+                      <th><span>Name</span></th>
+                      <th><span>Email</span></th>
+                      <th><span>Date Joined</span></th>
+                      <th><span>Delete</span></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% if records %}
+                      {% for emp in records %}
+                      <tr>
+                        <td style="text-align: center;">{{emp.first_name}} {{emp.last_name}}</td>
+                        <td>{{emp.email}}</td>
+                        {% comment %} <td>{{emp.designation}}</td> {% endcomment %}
+                        <td>{{emp.date_joined.date}}</td>
+                        {% comment %} <td><a href="{% url "emp_del" emp.id %}" class='btn btn-danger md-sm'>Delete</a></td> {% endcomment %}
+                        <td><a href="{% url "emp_del" emp.id %}">
+                          <img src="{% static 'images/delete.png'%}">
+                      </a></td>
+                      </tr>
+                      {% endfor %}
+                    {% else %}
+                      <h3>
+                          <div class="alert alert-dark" role="alert">
+                              Record Not Found
+                            </div>
+                      </h3>
+                    {% endif %}
+                  </tbody>
+                </table>
+
+              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

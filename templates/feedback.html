@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+
+
+<div class="container" style="font-size:1rem;">
+	<div class="row">
+		<div class="col-md-2"></div>
+			<div class="col-md-8">
+			
+			<h1 class="text-center mt-5 font-weight-bold">Feedback</h1>
+			<hr class="bg-white">
+			<h3 class="mt-4" style="font-size:2rem;">How do you rate your overall experience?</h3><br>
+
+			<form method='POST'>
+				{% csrf_token %}
+				
+				{{form|crispy}}
+			<div class="form-group">
+				<button href="" class="btn btn-outline-info" type="submit">Submit</button>
+			</div>
+		</form>	
+</div>
+
+{% endblock %} 
