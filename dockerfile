@@ -26,4 +26,4 @@ EXPOSE 8000
 ENV PYTHONUNBUFFERED=1
 
 # Command to run the application with gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "My_To_do.wsgi:application"]
+CMD ["gunicorn", "My_To_do.wsgi:application" , "--bind", "0.0.0.0:8000"]
