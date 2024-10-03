@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django-ecom-deployment
+  labels:
+    app: django-ecom
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-ecom
+  template:
+    metadata:
+      labels:
+        app: django-ecom
+    spec:
+      containers:
+      - name: django-ecom
+        image: abdallahdoc/greatkart-ecom
+        ports:
+        - containerPort: 8000
