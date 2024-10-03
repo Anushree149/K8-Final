@@ -1,9 +1,9 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: django-ecom-service
+  name: django-todo-service
   labels:
-    app: django-ecom
+    app: django-todo
 spec:
   type: NodePort
   ports:
@@ -11,4 +11,4 @@ spec:
     targetPort: 8000
     nodePort: 31000
   selector:
-    app: django-ecom
+    app: django-todo

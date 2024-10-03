@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: django-ecom-deployment
+  name: django-todo-deployment
   labels:
-    app: django-ecom
+    app: django-todo
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: django-ecom
+      app: django-todo
   template:
     metadata:
       labels:
-        app: django-ecom
+        app: django-todo
     spec:
       containers:
-      - name: django-ecom
-        image: abdallahdoc/greatkart-ecom
+      - name: django-todo
+        image: krsna3629/mark_to_do
         ports:
         - containerPort: 8000
