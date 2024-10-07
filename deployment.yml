@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: django-todo
-        image: krsna3629/mark_to_do
+        image: krsna3629/mark_to_do:v2.2
         ports:
         - containerPort: 8000
