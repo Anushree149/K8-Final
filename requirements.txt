@@ -4,4 +4,3 @@ django_phone_field==1.8.1
 django-widget-tweaks
 crispy-bootstrap5
 django-widget-tweaks
-gunicorn

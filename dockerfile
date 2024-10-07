@@ -10,7 +10,8 @@ COPY requirements.txt .
 # Install any Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN gunicorn --version
+RUN pip install gunicorn
+
 # Copy the entire Django project into the container
 COPY . .
 
