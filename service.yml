@@ -1,27 +1,15 @@
-#apiVersion: v1
-#kind: Service
-#metadata:
-  #name: django-todo-service
-  #labels:
-    #app: django-todo
-#spec:
-  #type: NodePort
-  #ports:
-  #- port: 8000
-    targetPort: 8000
-    nodePort: 31000
-  #selector:
-    app: django-todo
-
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: django-todo-service
+  labels:
+    app: django-todo
 spec:
-  selector:
-    app: nginx
-  ports:
-    - protocol: TCP
-      port: 8000
-      targetPort: 8000
   type: NodePort
+  ports:
+  - port: 8000
+    targetPort: 8000
+    nodePort: 31000
+  selector:
+    app: django-todo
+
