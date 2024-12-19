@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: django-todo
-        image: anushree039/k8-deployment:latest
+        image: anushree039/k8:latest
         ports:
         - containerPort: 8000
